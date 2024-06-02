@@ -1,0 +1,15 @@
+{
+  "name": "wanderlost-fullstack-app",
+  "version": "1.0.0",
+  "description": "**Introduction** For this Unit 2 Project, a Full Stack app will be created, where the user can view and add different attractions from different cities in different countries to plan their trips in the future!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^8.4.1"
+  }
+}
