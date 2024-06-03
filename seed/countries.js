@@ -54,14 +54,15 @@ const main = async () => {
             time_zone: '(GMT+7)' ,
             language: ['Thai']
         },
-        
-        {
-            name: 'Botswana',
-            continent: 'Africa',
-            time_zone: '(GMT+2)' ,
-            language: ['English, Setswana, Ikalanga']
-        },
 
+        {
+            name: 'Trinidad and Tobago',
+            continent: 'North America',
+            time_zone: '(GMT-4)' ,
+            language: ['English']
+        }
+        
+        
 
     ]
 

@@ -6,7 +6,6 @@ const City = new Schema(
         name: { type: String, required: true },
         population: { type: String, required: true },
         country:{type: mongoose.Schema.Types.ObjectId, ref: 'country'}
-        ,
     },
     { timestamps: true },
 )
