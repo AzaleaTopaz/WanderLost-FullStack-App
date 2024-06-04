@@ -25,6 +25,7 @@ const getCountryById = async (req, res) => {
 }
 
 
+
 // create
 
 const createCountries = async (req, res) => {
@@ -70,9 +71,11 @@ const deleteCountry = async (req, res) => {
     }
 }
 module.exports = {
+    
     getAllCountries,
     getCountryById,
     createCountries,
     updateCountries,
     deleteCountry
 }
+  
