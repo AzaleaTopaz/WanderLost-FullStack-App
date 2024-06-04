@@ -1,0 +1,19 @@
+
+
+#destinationContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    
+}
+
+
+#enter {
+    transition: opacity 0.5s ease;
+}
+
+.fade-out {
+    opacity: 0;
+}
