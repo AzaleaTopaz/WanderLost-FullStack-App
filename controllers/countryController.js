@@ -1,5 +1,5 @@
 const Country = require('../models/country')
-
+const City = require('../models/city')
 // Read/Show
 
 const getAllCountries = async (req, res) => {
@@ -24,7 +24,17 @@ const getCountryById = async (req, res) => {
     }
 }
 
-
+const getAllCities = async (req, res) => {
+    try {
+        const { id } = req.params
+        console.log(id)
+       const cities = await City.find({country: id});
+       console.log(cities)
+       return res.json(cities) 
+    } catch (error) {
+        return res.status(500).send(error.message)
+    }
+}
 
 // create
 
@@ -76,6 +86,7 @@ module.exports = {
     getCountryById,
     createCountries,
     updateCountries,
-    deleteCountry
+    deleteCountry,
+    getAllCities,
 }
   

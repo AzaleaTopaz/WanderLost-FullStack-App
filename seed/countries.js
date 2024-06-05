@@ -3,63 +3,77 @@ const Country = require('../models/country')
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
-const main = async () => {
+const resetCollections = async () => {
+    try {
+        await Country.deleteMany({});
+        console.log('All collection reset');
+    } catch(error) {
+        console.error('Error resetting collections:', error);
+    };
+    const main = async() => {
+        await resetCollections();
+        
+    }
 
+}
+
+const main = async () => {
+resetCollections()
     const countries = [
 
         {
             name: 'Japan',
             continent: 'Asia',
             time_zone: '(GMT+9)' ,
-            language: ['Japanese']
+            languages: 'Japanese'
         },
 
         {
             name: 'Costa Rica',
-            continent: 'Noth America',
+            continent: 'North America',
             time_zone: '(GMT-6)' ,
-            language: ['Spanish']
+            languages: 'Spanish'
         },
 
         {
             name: 'Peru',
             continent: 'South America',
             time_zone: '(GMT-5)' ,
-            language: ['Spanish, Quechuan, Aymara']
+            languages: 'Spanish, Quechuan, Aymara'
         },
 
         {
             name: 'Mexico',
             continent: 'North America',
             time_zone: '(GMT-6)' ,
-            language: ['Spanish']
+            languages: 'Spanish'
         },
 
         {
             name: 'United States',
             continent: 'North America',
             time_zone: '(GMT-4)' ,
-            language: ['English']
+            languages: 'English'
         },
 
         {
             name: 'South Korea',
             continent: 'Asia',
             time_zone: '(GMT-4)' ,
-            language: ['Korean']
+            languages: 'Korean'
         },
         {
             name: 'Thailand',
             continent: 'Asia',
             time_zone: '(GMT+7)' ,
-            language: ['Thai']
+            languages: 'Thai'
         },
 
         {
             name: 'Trinidad and Tobago',
             continent: 'North America',
             time_zone: '(GMT-4)' ,
-            language: ['English']
+            languages: 'English'
         }
         
         

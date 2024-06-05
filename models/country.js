@@ -6,7 +6,7 @@ const Country = new Schema(
         name: { type: String, required: true },
         continent: { type: String, required: true },
         time_zone: { type: String, required: true },
-        languages: [{ type: String, required: true }]
+        languages: { type: String, required: true}
     },
     { timestamps: true },
 )

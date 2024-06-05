@@ -25,7 +25,7 @@ app.get('/countries/:id', countryController.getCountryById)
 app.post('/countries', countryController.createCountries)
 app.put('/countries/:id', countryController.updateCountries)
 app.delete('/countries/:id', countryController.deleteCountry)
-
+app.get('/getAllCities/:id', countryController.getAllCities)
 
 
 
