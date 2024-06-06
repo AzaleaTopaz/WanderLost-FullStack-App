@@ -5,7 +5,8 @@ const City = new Schema(
     {
         name: { type: String, required: true },
         population: { type: String, required: true },
-        country:{type: mongoose.Schema.Types.ObjectId, ref: 'country'}
+        country:{type: mongoose.Schema.Types.ObjectId, ref: 'country'},
+        image:{type: String, required: true}
     },
     { timestamps: true },
 )
