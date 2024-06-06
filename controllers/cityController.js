@@ -1,5 +1,5 @@
 const City = require('../models/city')
-
+const Attraction = require('../models/attraction')
 // Read/Show
 
 const getAllCities = async (req, res) => {
@@ -24,7 +24,17 @@ const getCityById = async (req, res) => {
     }
 }
 
-
+const getAllAttractions = async (req, res) => {
+    try {
+        const { id } = req.params
+        console.log(id)
+       const attractions = await Attraction.find({city: id});
+       console.log(attractions)
+       return res.json(attractions) 
+    } catch (error) {
+        return res.status(500).send(error.message)
+    }
+}
 // create
 
 const createCities = async (req, res) => {
@@ -70,6 +80,7 @@ const deleteCity = async (req, res) => {
     }
 }
 module.exports = {
+    getAllAttractions,
     getAllCities,
     getCityById,
     createCities,

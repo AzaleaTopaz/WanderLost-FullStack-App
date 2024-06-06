@@ -1,17 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Indie+Flower&family=Satisfy&family=Zeyada&display=swap');
 
-/* 
-#destinationContainer {
+body{ 
     display: flex;
-    flex-direction: column;
     justify-content: center;
+    flex-direction: column;
+    background-color: #cbf3f0;
+    
     
 }
 
 
-#enter {
+h1 {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 150px;
+    background: linear-gradient(to right, #ff9966, #ff5e62);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Great Vibes';
+    
+}
+
+
+
+h1.smaller {
+ font-size: 60px; 
+
+}
+
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    border: none;
     transition: opacity 0.5s ease;
+    font-family: 'Indie Flower';
+    background-color:  #cbf3f0 ;
+    background: linear-gradient(to right,#ff5e62, #ff9966, #ff5e62);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 36px;
+    font-family: 'Great Vibes';
+    color: #023047;
+
+}
+
+h3 {
+    font-size: 24px;
+    font-family: 'Great Vibes';
+    color: #023047;
+}
+
+
+#destinationContainer {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column;
+   
+}
+
+img{
+    display: flex;
+    flex-direction: row;
+    height: 470px;
+    width: 750px;
+   
 }
 
 .fade-out {
     opacity: 0;
-} */
+}
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 1s ease-in;
+}
+
+.visible {
+    opacity: 1;
+}

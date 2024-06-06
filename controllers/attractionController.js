@@ -24,6 +24,17 @@ const getAttractionById = async (req, res) => {
     }
 }
 
+const getAllAttractionsByCity = async (req, res) => {
+    try {
+        const { id } = req.params
+        console.log(id)
+       const attractions = await Attraction.find({city: id});
+       console.log(attractions)
+       return res.json(attractions) 
+    } catch (error) {
+        return res.status(500).send(error.message)
+    }
+}
 
 // create
 
@@ -70,6 +81,7 @@ const deleteAttraction = async (req, res) => {
     }
 }
 module.exports = {
+    getAllAttractionsByCity,
     getAllAttractions,
     getAttractionById,
     createAttractions,

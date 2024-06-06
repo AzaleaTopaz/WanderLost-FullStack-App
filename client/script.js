@@ -2,25 +2,31 @@ const button = document.getElementById('enter');
 const destinationContainer = document.createElement('div');
 destinationContainer.id = 'destinationContainer';
 document.body.appendChild(destinationContainer);
-let countries 
 
+let countries 
+let cities
+let attractions
+
+// create select element
 const selectEl = document.createElement('select');
 
+// when button is clicked, show dropdown menu to select a country, that will show its continent, language, and cities.
 
 button.addEventListener('click', async () => {
-    // destinationContainer.innerHTML = '';
+    document.querySelector('h1').classList.add('smaller');
+    destinationContainer.innerHTML = '';
 
     const res = await axios.get(`http://localhost:3001/countries/`);
     countries = res.data;
     console.log(countries)
     
-    
-    
+    // create a default option of choosing a country
     selectEl.setAttribute('id', 'countrySelect');
     const optionPrompt = document.createElement('option');
     optionPrompt.innerText = 'Select a Country';
     selectEl.appendChild(optionPrompt)
     
+    // create options for dropdown menu
     countries.forEach(country => {
         // console.log(country.name)
         const optionEl = document.createElement('option');
@@ -30,10 +36,13 @@ button.addEventListener('click', async () => {
         selectEl.appendChild(optionEl);
     
     });
+
+    // create a fade out for button
     button.classList.add('fade-out');
         setTimeout(() => {
             button.style.display = 'none';
         }, 500);
+
         destinationContainer.appendChild(selectEl);
     }); 
         
@@ -44,12 +53,12 @@ button.addEventListener('click', async () => {
             countries.filter( async (country) => {
                 if (country.name === selectedCountry) {
                     const response = await axios.get(`http://localhost:3001/getAllCities/${country._id}`);
-                    const cities = response.data;
+                    cities = response.data;
                     console.log(cities)
                     destinationContainer.innerHTML = `
                     <h2>${country.name}</h2>
-                    <p>continent: ${country.continent}</p>
-                    <p>language(s): ${country.languages}</p>`;
+                    <p>Continent: ${country.continent}</p>
+                    <p>Language(s): ${country.languages}</p>`;
                     
                     console.log(country)
                     
@@ -58,6 +67,70 @@ button.addEventListener('click', async () => {
                         let cityImage = document.createElement('img')
                             cityName.innerText = city.name
                             destinationContainer.appendChild(cityName)
+                            cityName.addEventListener('click',fetchCityInfo) 
+                                
+                            
+                            cityImage.addEventListener('click', async () => {
+                                
+                                const response = await axios.get(`http://localhost:3001/getAllAttractions/${city._id}`);
+                                const attractions = response.data;
+                                
+                                attractions.forEach((attraction) => {
+                                    destinationContainer.innerHTML = '';
+                                    let attractionName = document.createElement('h3');
+                                    let attractionImage = document.createElement('img');
+                                    attractionName.innerText = attraction.name;
+                                    destinationContainer.appendChild(attractionName)
+                                    
+                                    attractionImage.classList.add('fade-in')
+
+                                    if(attraction.name === 'Shirogane Blue Pond') {
+                                        attractionImage.src = 'https://hokkaido.a4jp.com/wp-content/uploads/2023/09/content.jpg';
+                                    }else if(attraction.name === 'Tokyo Sky Tree') {
+                                        attractionImage.src = 'https://static.independent.co.uk/s3fs-public/thumbnails/image/2010/07/06/00/407862.jpg?width=1200&height=900&fit=crop';
+                                    }else if(attraction.name === 'Pigeon Point Beach') {
+                                        attractionImage.src = 'https://www.tripsavvy.com/thmb/Hx_-Iu_330SMnDTcWqs0ajRW1IY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-rh526-653-5b54f08b46e0fb00370f2c57.jpg';
+                                    }else if(attraction.name === 'Nylon Pool') {
+                                        attractionImage.src = 'https://www.caribbeannationalweekly.com/wp-content/uploads/2022/08/Screenshot_20220822-193028_Facebook.jpg';
+                                    }else if(attraction.name === 'Phi Phi Island') {
+                                        attractionImage.src = 'https://www.agoda.com/wp-content/uploads/2024/02/Aerial-view-of-Maya-bay-in-Phi-phi-island-Thailand.jpg';
+                                    }else if(attraction.name === 'Wat Plai Laem') {
+                                        attractionImage.src = 'https://a.cdn-hotels.com/gdcs/production41/d1472/c0f33609-13d7-4e6c-a984-811ef33639ab.jpg';
+                                    }else if(attraction.name === 'Gyeongbok Palace') {
+                                        attractionImage.src = 'https://www.korea.net/upload/content/editImage/20230329144152690_2V3S9BMD.jpg';
+                                    }else if(attraction.name === 'BIFF Square') {
+                                        attractionImage.src = 'https://c8.alamy.com/comp/RY4HXN/busan-international-film-festivalbiff-square-in-busan-south-korea-RY4HXN.jpg';
+                                    }else if(attraction.name === 'Havasu Falls') {
+                                        attractionImage.src = 'https://www.travelandleisure.com/thmb/c3rs2ANoLiG8bkk6wnsTBSOei0A=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/TAL-header-havasu-falls-arizona-HAVASUFALLS0423-2d87409cd81e436da6d750c9422c439d.jpg';
+                                    }else if(attraction.name === 'Redwood National Park') {
+                                        attractionImage.src = 'https://morethanjustparks.com/wp-content/uploads/2020/09/2Q3A5635-2.jpg';
+                                    }else if(attraction.name === 'Laguna de Kaan Luum') {
+                                        attractionImage.src = 'https://mexicocenotesandruins.com/wp-content/uploads/2022/07/kaan-luum-aerial-pier-tower.jpg.webp';
+                                    }else if(attraction.name === 'Frida Kahlo Museum') {
+                                        attractionImage.src = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKbW7CIRb1prauypuun5dSAziAssnyJcSZKg&s';
+                                    }else if(attraction.name === 'Sun Gate') {
+                                        attractionImage.src = 'https://www.tierrasvivas.com/img/view-from-sun-gte-inca-trail-06-880.jpg';
+                                    }else if(attraction.name === 'Huaca Pucllana Site Museum') {
+                                        attractionImage.src = 'https://www.enigmaperu.com/blog/wp-content/uploads/2019/07/5d360b857618c.png';
+                                    }else if(attraction.name === 'Playa Montezuma') {
+                                        attractionImage.src = 'https://costarica.org/wp-content/uploads/2014/12/Playa-Montezuma-Trees.jpg';
+                                    }else if(attraction.name === 'Sky Adventures Arenal Zip Line') {
+                                        attractionImage.src = 'https://static.wixstatic.com/media/a524b2_88f3e468c1d24589b3ce23d859ca13be.jpg/v1/fill/w_540,h_372,al_c,q_80,enc_auto/a524b2_88f3e468c1d24589b3ce23d859ca13be.jpg';
+                                    }
+                                    
+
+                                    destinationContainer.appendChild(attractionImage)
+
+                                    setTimeout(() => {
+                                        attractionImage.classList.add('visible');
+                                    }, 100);
+                                    
+                                })
+                                console.log(attractions);
+                            });
+
+                            cityImage.classList.add('fade-in');
+                                
                             if(city.name === 'Hokkaido') {
                                 cityImage.src = 'https://resources.matcha-jp.com/resize/720x2000/2023/01/13-133731.webp'; 
                                }else if (city.name === 'Tokyo') {
@@ -93,9 +166,79 @@ button.addEventListener('click', async () => {
                                } else {
                                 console.log('Image not available')
                                }
+                               
                                destinationContainer.appendChild(cityImage)
+                               setTimeout(() => {
+                                cityImage.classList.add('visible');
+                            }, 100);
+                            
+                               
+                               
+                               
+
                         })
+                    
+                    }
+                })
                   
+            })
+
+
+          
+
+async function fetchCityInfo(event) {
+    const city = cities.find((city) => city.name === event.target.innerText);
+    console.log(city)
+    
+
+    
+
+const response = await axios.get(`http://localhost:3001/cities/${city._id}`);
+const res = await axios.get(`http://localhost:3001/getAllAttractionsByCity/${city._id}`);
+
+console.log(response.data)
+console.log(res.data)
+
+const cityInfo = response.data
+destinationContainer.innerHTML = `
+    <h2>${cityInfo.name}</h2>
+    <h5>Population: ${cityInfo.population}</h5>`;
+   
+   
+    
+    const attractionInfo = res.data;
+    attractionInfo.forEach((attraction) => {
+        let attractionName = document.createElement('h3')
+        attractionName.innerText = attraction.name
+        destinationContainer.appendChild(attractionName)
+    });
+}
+  
+  
+    
+   
+ 
+    
+    
+        
+
+    
+   
+    
+
+    
+                            
+
+                    
+
+                                
+                                
+
+                                
+                        
+
+    
+    
 
                   
                  
@@ -103,34 +246,13 @@ button.addEventListener('click', async () => {
                     
                     
 
-                }
-            })
                     
                     
     
-        })
+        
+        
        
        
-    // });
-    async function getCities() {
-    const res = await axios.get(`http://localhost:3001/cities`);
-    
-    const cityData = res.data
-    // console.log(cityData)
-    } 
-    
-    // getCities()
-    
-    async function getAttractions() {
-    const res = await axios.get(`http://localhost:3001/attractions`);
-    
-    const attractionData = res.data
-    // console.log(attractionData)
-    } 
-    
-    // getAttractions()
-    
-    // })
     
     
     
