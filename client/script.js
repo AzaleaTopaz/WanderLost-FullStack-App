@@ -1,7 +1,9 @@
 const button = document.getElementById('enter');
-const destinationContainer = document.createElement('div');
-destinationContainer.id = 'destinationContainer';
-document.body.appendChild(destinationContainer);
+const destinationContainer = document.getElementById('destinationContainer');
+const cityInfoContainer = document.getElementById('cityInfoContainer');
+const attractionInfoContainer = document.getElementById('attractionInfoContainer');
+const imageContainer = document.getElementById('imageContainer');
+
 
 let countries 
 let cities
@@ -67,7 +69,30 @@ button.addEventListener('click', async () => {
                         let cityImage = document.createElement('img')
                             cityName.innerText = city.name
                             destinationContainer.appendChild(cityName)
-                            cityName.addEventListener('click',fetchCityInfo) 
+                            cityName.addEventListener('click', async () => {
+                                const city = cities.find((city) => city.name === event.target.innerText);
+                                const response = await axios.get(`http://localhost:3001/cities/${city._id}`);
+                                const cityInfo =response.data
+                                
+                                cityInfoContainer.innerHTML = `
+                                <h2>${cityInfo.name}</h2>
+                                <h5>Population: ${cityInfo.population}</h5>`;
+                                
+                                // clearing attractionInfoContainer
+                                attractionInfoContainer.innerHTML = '';
+
+                                const res = await axios.get(`http://localhost:3001/getAllAttractionsByCity/${city._id}`);
+                                const attractionInfo = res.data;
+
+                                attractionInfo.forEach((attraction) => {
+                                    let attractionName = document.createElement('h3')
+                                    attractionName.innerText = attraction.name
+                                    attractionInfoContainer.appendChild(attractionName)
+                                });
+                            
+
+
+                            }) 
                                 
                             
                             cityImage.addEventListener('click', async () => {
@@ -119,7 +144,7 @@ button.addEventListener('click', async () => {
                                     }
                                     
 
-                                    destinationContainer.appendChild(attractionImage)
+                                    imageContainer.appendChild(attractionImage)
 
                                     setTimeout(() => {
                                         attractionImage.classList.add('visible');
@@ -167,7 +192,7 @@ button.addEventListener('click', async () => {
                                 console.log('Image not available')
                                }
                                
-                               destinationContainer.appendChild(cityImage)
+                               imageContainer.appendChild(cityImage)
                                setTimeout(() => {
                                 cityImage.classList.add('visible');
                             }, 100);
@@ -186,33 +211,9 @@ button.addEventListener('click', async () => {
 
           
 
-async function fetchCityInfo(event) {
-    const city = cities.find((city) => city.name === event.target.innerText);
-    console.log(city)
-    
 
-    
 
-const response = await axios.get(`http://localhost:3001/cities/${city._id}`);
-const res = await axios.get(`http://localhost:3001/getAllAttractionsByCity/${city._id}`);
 
-console.log(response.data)
-console.log(res.data)
-
-const cityInfo = response.data
-destinationContainer.innerHTML = `
-    <h2>${cityInfo.name}</h2>
-    <h5>Population: ${cityInfo.population}</h5>`;
-   
-   
-    
-    const attractionInfo = res.data;
-    attractionInfo.forEach((attraction) => {
-        let attractionName = document.createElement('h3')
-        attractionName.innerText = attraction.name
-        destinationContainer.appendChild(attractionName)
-    });
-}
   
   
     
