@@ -94,6 +94,7 @@ async function fetchAttractionInfo(event) {
     const attractions = response.data
     renderAttractionInfo(attractions)
 }
+attractionInfoContainer.innerHTML = '';
 // create function to display attraction info
 async function renderAttractionInfo(attractions) {
     attractionInfoContainer.innerHTML = '';
@@ -109,6 +110,7 @@ async function renderAttractionInfo(attractions) {
     console.log(attractionInfo)
     // atttach attraction info to attraction info container
     attractionInfoContainer.appendChild(attractionInfo)
+
 })
 }    
 
