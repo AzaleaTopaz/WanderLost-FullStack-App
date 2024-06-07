@@ -90,6 +90,7 @@ async function fetchAttractionInfo(event) {
 }
 // create function to display attraction info
 async function renderAttractionInfo(attractions) {
+    attractionInfoContainer.innerHTML = '';
     attractions.forEach((attraction) => {
         // create a div element to store attraction info
         const attractionInfo = document.createElement('div')
