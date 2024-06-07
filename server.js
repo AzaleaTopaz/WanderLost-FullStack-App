@@ -37,10 +37,9 @@ app.delete('/cities/:id', cityController.deleteCity)
 app.get('/getAllAttractions/:id', cityController.getAllAttractions)
 
 
-
+// app.get('/getAllAttractionsByCity/:id', attractionController.getAllAttractionsByCity)
 app.get('/attractions', attractionController.getAllAttractions)
 app.get('/attractions/:id', attractionController.getAttractionById)
 app.post('/attractions', attractionController.createAttractions)
 app.put('/attractions/:id', attractionController.updateAttractions)
 app.delete('/attractions/:id', attractionController.deleteAttraction)
-app.get('/getAllAttractionsByCity/:id', attractionController.getAllAttractionsByCity)

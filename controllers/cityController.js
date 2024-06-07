@@ -25,6 +25,7 @@ const getCityById = async (req, res) => {
 }
 
 const getAllAttractions = async (req, res) => {
+    console.log('click')
     try {
         const { id } = req.params
         console.log(id)

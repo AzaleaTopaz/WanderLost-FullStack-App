@@ -25,7 +25,9 @@ const getAttractionById = async (req, res) => {
 }
 
 const getAllAttractionsByCity = async (req, res) => {
+    
     try {
+        
         const { id } = req.params
         console.log(id)
        const attractions = await Attraction.find({city: id});
