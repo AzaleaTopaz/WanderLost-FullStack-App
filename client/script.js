@@ -39,6 +39,11 @@ button.addEventListener('click', async () => {
         // attach option element to select element
         selectEl.appendChild(optionEl);
     });
+    // create fade out for button
+    button.classList.add('fade-out');
+    setTimeout(() => {
+        button.style.display = 'none';
+    }, 700);
 });
 // add event listener to change from select element to country info
 selectEl.addEventListener('change', async () => {
