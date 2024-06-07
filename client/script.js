@@ -56,9 +56,9 @@ selectEl.addEventListener('change', async () => {
     cities = response.data;
     // create html for country info
     countryInfoContainer.innerHTML = `
-        <h2>${country.name}</h2>
-        <p>Continent: ${country.continent}</p>
-        <p>Languages: ${country.languages}</p>
+        <h2 class="fade-in">${country.name}</h2>
+        <p class="fade-in">Continent : ${country.continent}</p>
+        <p class="fade-in">Languages: ${country.languages}</p>
     `;
 // clear city info container for new info
     cityInfoContainer.innerHTML = '';
@@ -66,6 +66,7 @@ selectEl.addEventListener('change', async () => {
     cities.forEach(city => {
         const cityName = document.createElement('h3');
         cityName.innerText = city.name;
+        cityName.classList.add('fade-in');
         // attach city name to city info container
         cityInfoContainer.appendChild(cityName);
         // add a click event listener to get city info

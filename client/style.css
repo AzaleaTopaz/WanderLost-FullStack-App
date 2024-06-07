@@ -14,7 +14,8 @@ body{
 }
     
 h1 {
-
+    opacity: 0;
+    animation: fadeIn 2s forwards;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,9 +24,13 @@ h1 {
     background-clip: text;
     -webkit-text-fill-color: transparent;
     font-family: 'Great Vibes';
-    
-    
 }
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+    
     
 h1.smaller {
  font-size: 60px; 
@@ -96,8 +101,15 @@ img{
 }
 
 .fade-in {
-    opacity: 0;
-    transition: opacity 1s ease-in;
+    animation: fadeIn 2s forwards; 
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 .visible {
